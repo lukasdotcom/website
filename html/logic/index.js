@@ -93,14 +93,39 @@ function firstOperation() {
     complexity = 1000;
   }
   localStorage.firstOperationComplexity = complexity;
+  if (localStorage.solvedTruthTree == undefined) {
+    localStorage.solvedTruthTree = 0;
+  }
+  if (localStorage.complexityTruthTree == undefined) {
+    localStorage.complexityTruthTree = 0;
+  }
   // Checks if the game has already been played and if this was a completed game sends the event.
   if (firstOperationAttempts != 0) {
-    _paq.push(
-      ["trackEvent", "Truth Tree", `Complexity : ${complexity}`],
-      `Attempts : ${firstOperationAttempts}`
-    );
+    _paq.push([
+      "trackEvent",
+      "Truth Tree",
+      `Complexity : ${complexity}`,
+      `Attempts : ${firstOperationAttempts}`,
+    ]);
+
     firstOperationAttempts = 0;
+    localStorage.solvedTruthTree++;
+    localStorage.complexityTruthTree =
+      parseInt(localStorage.complexityTruthTree) + complexity;
+    fetch(`/api/logic.php?solved=${complexity}`)
+      .then((r) => r.json())
+      .then((r) => {
+        $("#solvedTotal").text(r.solved);
+        $("#averageTotal").text(r.average);
+      });
   }
+  $("#solved").text(parseInt(localStorage.solvedTruthTree));
+  $("#average").text(
+    parseInt(localStorage.solvedTruthTree) === 0
+      ? 0
+      : parseInt(localStorage.complexityTruthTree) /
+          parseInt(localStorage.solvedTruthTree)
+  );
   // Will generate the text for the truth sentence
   function generateSentenceText(sentence, first) {
     if (sentence.length == 2) {

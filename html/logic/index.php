@@ -9,6 +9,7 @@
     <?php
     $DESCRIPTION = "This just contains a simple quiz that helps you decompose a truth tree.";
     require_once '../include/all.php';
+    require_once "../include/logic.php";
     ?>
 </head>
 
@@ -17,8 +18,10 @@
     include '../include/menu.php';
     echo "<div class='main'>";
     ?>
-    <script type='text/javascript' src='index.js?v=1.0.3'></script>
+    <script type='text/javascript' src='index.js?v=1.1.0'></script>
     <h1>Truth Tree Quiz</h1>
+    <p>Everyone solved <c id='solvedTotal'><?php echo GetLogicSolved(); ?></c> question(s) with an average complexity of <c id='averageTotal'><?php echo GetLogicAverageComplexity(); ?></c>.</p>
+    <p>You solved <c id='solved'>0</c> question(s) with an average complexity of <c id='average'>0</c>.</p>
     <p>Notes for all the logic symbols:</p>
     <ul>
         <li>Negation: ~</li>
@@ -28,7 +31,7 @@
         <li>Biconditional(if and only if): ↔</li>
     </ul>
     <h3>Click on the first logical operation that should be decomposed in a truth tree.</h3>
-    <label for="firstOperationComplexity">Complexity of Sentence: </label><input id='firstOperationComplexity' value='4' type='number'>
+    <label for="firstOperationComplexity">Complexity of Sentence: </label><input id='firstOperationComplexity' value='4' type='number' onchange="firstOperation()">
     <button id='firstOperationGenerate' onClick='firstOperation()'>Generate Sentence</button>
     <p id='firstOperation'></p>
     </div>
