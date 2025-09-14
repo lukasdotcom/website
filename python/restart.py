@@ -62,7 +62,6 @@ try:
         # This stores a list for the default config
         envConfiguration = [
             [["passwordOptions", "cost"], int(os.getenv("PASSWORD_ROUNDS", '10'))],
-            [["api"], os.getenv("WEBSITE_API")],
             [["mail", "server"], os.getenv("MAIL_SMTP_SERVER", "smtp.sendgrid.net")],
             [["mail", "username"], os.getenv("MAIL_USERNAME", "apikey")],
             [["mail", "password"], os.getenv("MAIL_PASSWORD", "none")],

@@ -15,8 +15,6 @@
                 ["Cookie Clicker Addon", "/cookieClicker/index.php"],
                 ["Truth Trees", "/logic/index.php"],
                 ["Random Stuff Generator", "/random_stuff/index.php"],
-                ["Floppy", "/floppy.php"],
-                ["Soccer", "/soccer.php"],
                 ["Electricity Log", "/electricity.php"],
                 ["privilege", "viewLog", "/log/index.php", "Server Log"],
                 ["privilege", "viewBackup", "/backup/index.php", "Backups"],
